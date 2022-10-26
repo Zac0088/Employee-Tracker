@@ -56,3 +56,32 @@ const promptUser = () => {
             })
         }
         
+        function viewDepartment(){
+            const sql = `select * FROM department`;
+            db.query(sql, (err, res) => {
+                if (err) throw err;
+                console.table(res);
+                console.log("Viewing Departments")
+                return promptUser();
+            });
+        }
+
+        function viewRoles() {
+            const sql = `select * FROM roles`;
+            db.query(sql, (err, res) => {
+                if (err) throw err;
+                console.table(res);
+                console.log('Viewing roles')
+                return promptUser();
+            });
+        }
+
+        function viewEmployees() {
+            const sql = `select * from employee`;
+            db.query(sql, (err, res)=>{
+                if (err) throw err;
+                console.table(res);
+                console.log("Viewing Employees")
+                return promptUser();
+            });
+        }
