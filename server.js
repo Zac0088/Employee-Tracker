@@ -119,5 +119,16 @@ const promptUser = () => {
                 type: 'text',
                 name: 'department_id',
                 message: 'New departments ID?'
-            }]).then((ans))
+            }]).then((answer) =>{
+                const sql = `insert into job (title, salary, department_id)
+                values (?,?,?)`;
+                const params = [answer.title,answer.salary, answer.department_id];
+                db.query(sql, params, (err, res)=>{
+                    if (err) throw err;
+                    console.table(res)
+                    console.log('New role created')
+                    return promptUser();
+                })
+            });
+            
         }
