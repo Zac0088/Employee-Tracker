@@ -85,3 +85,39 @@ const promptUser = () => {
                 return promptUser();
             });
         }
+
+        const addDepartment = () =>{
+            inquirer.prompt({
+                type: 'text',
+                name: 'department_name',
+                messaage: 'Name of Department'
+            })
+            .then((answer)=> {
+                const sql =`Insert into department (department_name)
+                values (?)`;
+                db.query(sql, answer.department_name, (err, res)=>{
+                    if (err) throw err;
+                    console.table(res)
+                    console.log('New Department Created')
+                    return promptUser();
+                });
+            });
+        }
+
+        const addRole = () => {
+            inquirer.prompt ([{
+                type: 'text',
+                name: 'salary',
+                message: 'Name of new Role?',
+            },
+            {
+                type: 'text',
+                name: 'salary',
+                message: 'New Roles Salary?',
+            },
+            {
+                type: 'text',
+                name: 'department_id',
+                message: 'New departments ID?'
+            }]).then((ans))
+        }
