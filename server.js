@@ -132,3 +132,38 @@ const promptUser = () => {
             });
             
         }
+
+        const addEmployee = () => {
+            inquirer.prompt ([{
+                type: 'Text',
+                name: 'first_name',
+                message: 'Employees first name?',
+            },
+            {
+                type: 'text',
+                name: 'last_name',
+                message: 'Employees last name?',
+            },
+            {
+                type: 'text',
+                name: 'roles_id',
+                message: 'Employee role ID?'
+            },
+            {
+                type: 'text',
+                name: 'manager_id',
+                message: 'Employees manager ID?',
+            
+            }]).then((answer)=> {
+                const sql = `insert into employee (first_name, last_name, job_id, manager_id)
+                values (?,?,?,?)`;
+                const params = [answer.first_name, answer.last_name, answer.roles_id, answer.manager_id];
+                db.query(sql, params, (err, res)=>{
+                    if (err) throw err;
+                    console.table(res)
+                    console.log('New Employee created')
+                    return promptUser();
+                })
+            });
+        }
+        
