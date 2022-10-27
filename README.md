@@ -4,9 +4,7 @@
 For this assignment we are tasked with creating a command line application that would let a business owner view and manage the departments, roles, and employees in there company
 so they can organize and plan there business.
 
-
-
-
+Accidently Deleted bug fixes application broken.
 
 ## Acceptance Criteria
 
@@ -28,9 +26,8 @@ THEN I am prompted to enter the employee’s first name, last name, role, and ma
 WHEN I choose to update an employee role
 THEN I am prompted to select an employee to update and their new role and this information is updated in the database 
 
-# screen Shot #
 
 # Video Recording of application
-
+https://drive.google.com/file/d/1k3HrMJWSwyFFktrUwisTOjpLec0kjedh/view
 # contact #
 [Zachary Smart on GitHub](https://github.com/Zac0088)

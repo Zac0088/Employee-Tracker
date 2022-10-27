@@ -164,14 +164,19 @@ const promptUser = () => {
             });
         }
 
-        const updateEmployeeRole =() => {
-            var Employees = `select first_name, last_name from employee`;
-            var roles = `select title from roles`;
+        function updateEmployeeRole() {
+            const sql = `select id, first_name, last_name from employee`
+            db.query(sql, (err, rows)=> {
+                if (err) console.log (err);
+                const employee = rows.map(({id, first_name, last_name})=> ({
+                    value:id, name: `${first_name} ${last_name}`
+                }))
+            })
             inquirer.prompt ([{
                 type: 'list',
-                name: 'id',
+                name: 'employee_id',
                 message: 'Which employee would you like to update?',
-                choices: Employees,
+                choices: employee,
             },
             {
                 type: 'list',
