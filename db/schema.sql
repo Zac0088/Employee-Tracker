@@ -10,7 +10,7 @@ CREATE TABLE roles (
 );
 CREATE TABLE employee (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
-    first_naem VARCHAR(30),
+    first_name VARCHAR(30),
     last_name VARCHAR(30),
     job_id INT,
     manager_id INT

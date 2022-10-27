@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS tracker;
+DROP DATABASE IF EXISTS tracker_db;
 
-CREATE DATABASE tracker;
-USE tracker;
+CREATE DATABASE tracker_db;
+USE tracker_db;

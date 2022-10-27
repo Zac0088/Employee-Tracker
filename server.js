@@ -2,10 +2,7 @@ const inquirer = require("inquirer");
 const db = require('./db/connect')
 require('console.table');
 
-db.connect((err) => {
-    if (err) throw err;
-    return promptUser();
-})
+
 
 const promptUser = () => {
     inquirer.prompt({
@@ -13,7 +10,7 @@ const promptUser = () => {
         message: 'Please select an option',
         name: 'options',
         choices: [
-            'View departments',
+            'View Departments',
             'View Roles',
             'View Employees',
             'Add a Department',
@@ -24,7 +21,7 @@ const promptUser = () => {
         ]
     })
         .then((answer) => {
-            switch (answer.action) {
+            switch (answer.options) {
                 case "Add an Employee":
                     addEmployee();
                     break;
@@ -107,7 +104,7 @@ const promptUser = () => {
         const addRole = () => {
             inquirer.prompt ([{
                 type: 'text',
-                name: 'salary',
+                name: 'title',
                 message: 'Name of new Role?',
             },
             {
@@ -120,7 +117,7 @@ const promptUser = () => {
                 name: 'department_id',
                 message: 'New departments ID?'
             }]).then((answer) =>{
-                const sql = `insert into job (title, salary, department_id)
+                const sql = `insert into roles (title, salary, department_id)
                 values (?,?,?)`;
                 const params = [answer.title,answer.salary, answer.department_id];
                 db.query(sql, params, (err, res)=>{
@@ -155,7 +152,7 @@ const promptUser = () => {
                 message: 'Employees manager ID?',
             
             }]).then((answer)=> {
-                const sql = `insert into employee (first_name, last_name, job_id, manager_id)
+                const sql = `insert into employee (first_name, last_name, id, manager_id)
                 values (?,?,?,?)`;
                 const params = [answer.first_name, answer.last_name, answer.roles_id, answer.manager_id];
                 db.query(sql, params, (err, res)=>{
@@ -193,3 +190,4 @@ const promptUser = () => {
                 })
             });
         }
+promptUser();
