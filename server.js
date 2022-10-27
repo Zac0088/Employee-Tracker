@@ -166,4 +166,30 @@ const promptUser = () => {
                 })
             });
         }
-        
+
+        const updateEmployeeRole =() => {
+            var Employees = `select first_name, last_name from employee`;
+            var roles = `select title from roles`;
+            inquirer.prompt ([{
+                type: 'list',
+                name: 'id',
+                message: 'Which employee would you like to update?',
+                choices: Employees,
+            },
+            {
+                type: 'list',
+                name: 'roles_id',
+                message: 'What role would you like to give to the employee?',
+                choices: roles,
+            }]).then((answers)=> {
+                const sql = `update employee set roles_id =?
+                where id = ?`;
+                const params = [answer.id, answer.roles_id];
+                db.query(sql, params, (err, res)=>{
+                    if (err) throw err;
+                    console.table(res)
+                    console.log('Employee role updated')
+                    return promptUser();
+                })
+            });
+        }
